@@ -6,12 +6,8 @@
   const hosted = Boolean(globalThis.__HAUNTED_HOSTED__);
   globalThis.fetch = async (input, options) => {
     if (String(input) !== "http://localhost:11434/api/chat") return originalFetch(input, options);
-    const response = await originalFetch(hosted ? "/api/generate" : "/__haunt/generate", options);
-    if (hosted && !response.ok) {
-      const data = await response.json().catch(() => ({}));
-      throw new Error(data.error || "SIGNAL is temporarily unavailable.");
-    }
-    return response;
+    if (hosted) return globalThis.hauntedBrowserModel.complete(JSON.parse(options.body), options.signal);
+    return originalFetch("/__haunt/generate", options);
   };
   let voice;
   let voiceContext;

@@ -17,3 +17,8 @@ textarea { display: block; width: 100%; padding: 14px; resize: vertical; color: 
 audio { display: block; width: 100%; margin: 15px 0 30px; }
 footer { padding: 20px 6vw; }
 @media(max-width:750px) { main { grid-template-columns: 1fr; } }
+
+.local-signal { margin-top: 24px; padding: 16px; border: 1px solid #82736166; }
+.local-signal label { margin: 0 0 10px; font: 13px/1.5 Georgia, serif; }
+.local-signal select { max-width: 100%; padding: 9px; margin: 0 8px 8px 0; background: #211b16; color: #e5ddc7; border: 1px solid #75634f; }
+.local-signal button:disabled { cursor: default; opacity: .65; }

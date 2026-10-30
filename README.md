@@ -127,10 +127,16 @@ The approved A piano score loops continuously, remaining at a lower level during
 
 Eyes are ambient only and independently appear in available blank space every 6.5–10.5 seconds. They never trigger the jumpscare cue. Progressive darkening starts on load; staggered corruption bands recur every twelve seconds with interference audio. Audio attempts autoplay and resumes on the first ordinary page interaction if the browser blocks it. No extra permission dialog is shown.
 
-## Hosted version on Vercel
+## Free browser conversation
 
-The hosted site uses `/api/generate` to reach Vercel AI Gateway. Set `AI_GATEWAY_MODEL` to a free model from the live catalog and enable Vercel OIDC for the project. Credentials remain on the server. The endpoint checks catalog prices and refuses models with nonzero input or output prices; no paid fallback is configured. Model availability and account verification requirements can still prevent replies.
+The hosted site runs conversation on the visitor's device through WebLLM 0.2.87. Click **Start free chat** to download a model: SmolLM2 360M is the smaller default; Gemma 2 2B is an optional larger model. Initial downloads can take several minutes. Files are cached by the browser when storage is available. A WebGPU-compatible browser and sufficient GPU memory are required. Unsupported devices can still use the visual and music demo.
 
-Hosted conversation and scene prompts are sent to the cloud provider, which may retain them; avoid personal information. The extension and Python preview continue to use local Ollama. Hosted speech uses available local English browser voices, preferring Whisper when installed, and does not use the macOS preview voice endpoint. Voice availability and tone depend on the device.
+No cloud inference endpoint, API key, payment card, or Ollama installation is required for the hosted version. Model/runtime files are fetched from external CDNs, but conversation inference stays on the device. Small-model replies can be less accurate or coherent. The extension and Python preview still use Gemma 3 4B through local Ollama. The browser model writes the scene text; the browser adapter selects a bounded effect and target.
 
-Run `node scripts/build-site.cjs` to create the static site in `dist/`. Vercel also deploys the root `api/generate.js` function. Run `node --test tests/hosted.test.cjs` for the hosted integration checks.
+Hosted speech uses available local English browser voices, preferring Whisper when installed. Voice availability and tone depend on the device.
+
+Run `node scripts/build-site.cjs` to create the static site in `dist/`. Run `node --test tests/hosted.test.cjs` for the hosted integration checks.
+
+## License
+
+Project code is licensed under MIT; see [LICENSE](LICENSE). Bundled third-party fonts and audio retain their own licenses and credits in `assets/fonts/`, `artifacts/`, and `assets/sound-audition/CREDITS.md`. Downloaded models and WebLLM retain their respective licenses; the project's MIT license does not replace those terms.

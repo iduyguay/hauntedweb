@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "node scripts/build-site.cjs",
   "outputDirectory": "dist",
-  "installCommand": "npm ci --omit=dev --ignore-scripts",
+  "installCommand": "",
   "redirects": [{ "source": "/", "destination": "/preview/", "permanent": false }]
 }
