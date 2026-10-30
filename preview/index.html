@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-haunted-preview>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haunted Web — Visual and Sound Audition</title>
+  <link rel="stylesheet" href="preview.css">
+  <script src="runtime.js" defer></script>
+  <script src="../background.js" defer></script>
+  <script src="preview.js" defer></script>
+  <script src="../content.js" defer></script>
+</head>
+<body>
+  <header data-haunted-ignore>
+    <p class="label">HAUNTED WEB / AUDITION</p>
+    <h1>The signal knows you are here.</h1>
+    <p>Live curse: the piano loops, glass fractures arrive automatically, and jumpscares appear at random. Press Escape to stop everything.</p>
+    <p><a href="jumpscare/">Open the jumpscare audition</a></p>
+    <nav aria-label="Effect previews">
+      <button data-scene="watchers">Red eyes</button>
+      <button data-scene="shadow">Vague walking presence</button>
+      <button data-scene="cracks">Crack the glass</button>
+      <button data-scene="tracking">TV tracking</button>
+      <button data-scene="wallwriting">Scratched warning</button>
+      <button data-scene="blackout">Signal interruption</button>
+      <button data-scene="infestation">Message infestation</button>
+      <button data-scene="tilt">Bend the page</button>
+      <button data-scene="inkbleed">Spreading stain</button>
+      <button data-scene="image-decay">Corrupt images</button>
+      <button id="mix">Mute audio</button>
+      <button id="resume">Resume the curse</button>
+      <button id="clear">Pause / Clear</button>
+    </nav>
+    <p id="activity-status" class="small">Automatic events are waking up.</p>
+  </header>
+  <main>
+    <article>
+      <p class="label">ARCHIVE 013 / UNFINISHED LETTERS</p>
+      <h2>The room was empty when you arrived.</h2>
+      <p id="excerpt">The last visitor left the light on. Nobody remembers who locked the door.</p>
+      <p>Some sentences seem familiar. Others have moved since you last looked.</p>
+      <label for="draft">Leave a note</label>
+      <textarea id="draft" rows="3" placeholder="Write a few words after playing an effect..."></textarea>
+      <p class="small">Your actual draft briefly changes, then returns. This audition never submits it.</p>
+    </article>
+    <section class="archive-records">
+      <p class="label">RECOVERED FRAGMENTS / DO NOT REORDER</p>
+      <h2>Record 001 — The empty chair</h2>
+      <p>The chair faced the screen long before the screen was switched on.</p>
+      <p>A narrow shadow remained underneath it when the furniture was removed.</p>
+      <h2>Record 002 — A voice without a room</h2>
+      <p>The recording contains an answer. Nobody can find the question.</p>
+      <p>Each time it plays, the pause before the answer becomes shorter.</p>
+      <h2>Record 003 — The missing corridor</h2>
+      <p>A figure crossed the edge of the image. There was no corridor on that side.</p>
+      <p>The noise on the tape begins where its footsteps should have been.</p>
+      <p id="mix-status" class="small">The score starts automatically when browser policy permits.</p>
+    </section>
+  </main>
+  <footer data-haunted-ignore>Live local Gemma conversation and local Whisper voice. Use the SIGNAL panel to answer. Escape restores the page.</footer>
+</body>
+</html>

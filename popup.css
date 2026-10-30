@@ -1,0 +1,21 @@
+body { width: 300px; padding: 24px; margin: 0; background: #0e0c09; color: #e5ddc8; font-family: Georgia, serif; }
+h1 { font-size: 30px; font-weight: 400; margin: 12px 0; }
+p { line-height: 1.6; }
+.eyebrow { color: #a04730; font: 10px monospace; letter-spacing: 2px; }
+.intro, .footnote { color: #aea38d; font-size: 13px; }
+.rule { height: 1px; background: #463025; margin: 22px 0; }
+#status { min-height: 45px; font-size: 14px; }
+button { width: 100%; padding: 12px; border: 1px solid #85311d; color: #eee3cd; background: #36150c; cursor: pointer; font: 13px monospace; }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, summary:focus-visible { outline: 2px solid #c2ad82; outline-offset: 4px; }
+.footnote { font: 10px monospace; margin-top: 18px; }
+details { color: #bcb096; font-size: 12px; margin-top: 20px; }
+summary { cursor: pointer; }
+code { color: #d2b78e; }
+.escape { color: #d2b78e; font: 12px/1.6 monospace; }
+kbd { border: 1px solid #70452e; padding: 2px 5px; border-radius: 2px; }
+
+.sound-settings { border-top: 1px solid #463025; margin-top: 20px; padding-top: 18px; }
+.sound-settings label { display: flex; justify-content: space-between; font: 12px monospace; margin: 14px 0 8px; }
+#volume { width: 100%; accent-color: #85311d; cursor: pointer; }
+#sound-toggle { background: transparent; }

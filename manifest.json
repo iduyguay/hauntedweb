@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Haunted Web",
+  "version": "6.6.0",
+  "description": "A browser curse: tangled words, possessed typing, defiant links, wandering ghosts, and watching eyes.",
+  "permissions": [
+    "activeTab",
+    "tts"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Haunted Web"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "http://localhost:11434/*"
+  ]
+}

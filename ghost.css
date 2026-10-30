@@ -1,0 +1,143 @@
+:host { all: initial; color-scheme: dark; }
+* { box-sizing: border-box; }
+.haunting { position: fixed; inset: 0; pointer-events: none; }
+.curse-badge, .sound-control { position: fixed; bottom: 16px; left: 16px; pointer-events: auto; padding: 10px 14px; border: 1px solid #563027; border-radius: 1px; background: #100e0bf5; box-shadow: 0 4px 28px #0006; color: #cfc8b7; font: 10px/1.4 monospace; letter-spacing: 1.4px; cursor: pointer; }
+.curse-badge[hidden], .sound-control[hidden] { display: none; }
+.curse-badge:hover, .sound-control:hover { background: #38120c; color: #f1e9d8; }
+.curse-badge:focus-visible, .sound-control:focus-visible { outline: 2px solid #a24028; outline-offset: 4px; }
+.patch { position: fixed; overflow: hidden; pointer-events: none; color: #681309; line-height: 1.3; text-shadow: none; padding: 4px; }
+.fracture { background: transparent; animation: fracture 1.8s steps(1) infinite; }
+.drift { background: transparent; animation: drift 3s ease-in-out infinite; }
+.redact { background: repeating-linear-gradient(0deg, transparent 0 6px, #3a1009aa 6px 7px); color: transparent; animation: erode 4s ease-in-out infinite; box-shadow: 0 0 35px #190902bb; }
+.whisper { display: flex; align-items: center; justify-content: center; padding: 10px; background: transparent; border: 0; font-style: italic; letter-spacing: 2px; }
+.scene-note { position: fixed; bottom: 76px; left: 50%; max-width: min(80vw, 650px); transform: translateX(-50%); padding: 15px 26px; border-bottom: 2px solid #6d170e; background: transparent; color: #681309; text-shadow: none; font: 19px/1.4 HauntTypewriter, monospace; text-align: center; letter-spacing: 2px; box-shadow: none; }
+.wall-message { position: fixed; width: min(72vw, 340px); max-width: 340px; padding: 6px; color: #681309; background: transparent; border: 0; font: 400 clamp(18px, 1.8vw, 22px)/1.45 HauntTypewriter, monospace; letter-spacing: .3px; text-shadow: none; rotate: -1deg; animation: inscription .45s steps(4) both; }
+.wall-writing { position: fixed; left: 12vw; max-width: min(68vw, 300px); color: #681309; font: 400 clamp(30px, 3vw, 42px)/1.1 HauntHorror, cursive; text-transform: uppercase; rotate: -4deg; letter-spacing: 2px; text-shadow: none; }
+.murmur { position: fixed; max-width: 260px; padding: 7px 0; border: 0; background: transparent; color: #c2b8b6; font: 400 38px/1 HauntBrush, cursive; letter-spacing: .8px; text-transform: uppercase; rotate: -7deg; text-shadow: 0 2px 5px #000; box-shadow: none; animation: murmur 2.4s ease both; }
+.rejection { position: fixed; border: 2px solid #8c210c; box-shadow: 0 0 20px #5b0d05bb, inset 0 0 16px #5b0d0566; animation: rejection .9s ease-out both; }
+.specter { position: fixed; width: clamp(160px, 18vw, 230px); height: clamp(250px, 32vw, 390px); opacity: 0; filter: grayscale(.85) brightness(.64) contrast(1.4); animation: presence 5s ease-in-out both; }
+.specter canvas { display: block; width: 100%; height: 100%; }
+.watcher { position: fixed; width: clamp(200px, 26vw, 340px); aspect-ratio: 2.5; pointer-events: none; animation: eyeReveal 5s linear both; animation-delay: var(--reveal-delay, 0s); clip-path: inset(48% 0 48%); filter: brightness(.85) saturate(.65) blur(.45px); isolation: isolate; }
+.watcher:nth-child(2) { width: clamp(180px, 22vw, 280px); }
+.eye-canvas { display: block; width: 100%; height: 100%; translate: var(--gaze-x, 0) var(--gaze-y, 0); }
+.fingerprint { position: fixed; width: 28px; height: 38px; border-radius: 50% 50% 45% 45%; border: 2px solid #68180b; background: repeating-radial-gradient(ellipse at 50% 60%, transparent 0 2px, #68180b 3px 4px, transparent 5px 6px); opacity: .85; animation: trace 2.4s ease-out both; }
+.handprint { position: fixed; width: 140px; height: 210px; opacity: .65; filter: saturate(.6) contrast(1.2); animation: stain 3.6s ease both; }
+.handprint canvas { display: block; width: 100%; height: 100%; }
+.glass-crack { position: fixed; inset: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; filter: drop-shadow(.6px .4px .2px #000); animation: glassImpact 2.8s linear both; }
+.glass-crack path { fill: none; stroke: #bcbcbc; stroke-opacity: .55; stroke-width: .65; stroke-linecap: round; }
+.glass-crack path.hairline { stroke-width: .3; stroke-opacity: .34; }
+@keyframes glassImpact { 0% { opacity: 0; } 1%, 65% { opacity: 1; } 100% { opacity: 0; } }
+.passing-shadow { animation: pass 4s ease-in-out both; filter: grayscale(1) brightness(.35) blur(1px); }
+.title-omen { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); padding: 8px 16px; background: #0b0906f5; color: #c6baa1; border-bottom: 1px solid #641709; font: 11px HauntTypewriter, monospace; letter-spacing: 3px; }
+@keyframes fracture { 0%, 20%, 45%, 100% { transform: translate(0); clip-path: inset(0); } 22%, 42% { transform: translate(-7px, 2px); clip-path: inset(12% 0 25%); } 24%, 40% { transform: translate(7px, -2px); clip-path: inset(40% 0 5%); } }
+@keyframes drift { 0%, 100% { transform: translate(0); opacity: .8; } 50% { transform: translate(24px, -10px) rotate(-3deg); opacity: 1; } }
+@keyframes erode { 0%, 100% { opacity: .5; clip-path: inset(0 70% 0 0); } 40%, 60% { opacity: .98; clip-path: inset(0); } }
+@keyframes haunt { 0%, 100% { opacity: .8; transform: translate(0,12px) rotate(-3deg); } 50% { opacity: .96; transform: translate(32px,-12px) rotate(3deg); } }
+@keyframes watch { 0%, 100% { opacity: .7; } 20%, 80% { opacity: 1; } 46% { scale: 1 1; } 48% { scale: 1 .1; } 51% { scale: 1 1; } }
+@keyframes murmur { 0% { opacity: 0; transform: translateY(8px); } 12%, 85% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-5px); } }
+@keyframes trace { 0% { opacity: .85; } 100% { opacity: 0; transform: translateY(12px); } }
+@keyframes rejection { 0% { opacity: 1; } 100% { opacity: 0; transform: scale(1.12); } }
+@keyframes stain { 0% { opacity: .3; } 15%, 85% { opacity: .85; } 100% { opacity: .1; } }
+@keyframes inscription { 0% { opacity: .85; translate: -4px 0; } 100% { opacity: 1; translate: 0 0; } }
+@keyframes pass { 0% { transform: translateX(-35vw); opacity: 0; } 20%, 70% { opacity: .45; } 100% { transform: translateX(100vw); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .specter { opacity: .9; } .watcher, .murmur, .fingerprint { opacity: .9; } .passing-shadow { left: 72vw; opacity: .6; } }
+
+
+@keyframes eyeReveal { 0%, 8% { clip-path: inset(48% 0 48%); opacity: 0; } 9% { clip-path: inset(48% 0 48%); opacity: .5; } 11%, 76% { clip-path: inset(0); opacity: .5; } 79%, 100% { clip-path: inset(48% 0 48%); opacity: 0; } }
+@keyframes presence { 0%, 100% { opacity: 0; transform: translateX(10px); } 15%, 72% { opacity: .52; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .watcher { clip-path: none; opacity: 1; } .specter { opacity: .45; } }
+
+.signal-loss { position: fixed; inset: 0; z-index: 3; pointer-events: none; background: #050404; animation: signalLoss .8s linear both; }
+@keyframes signalLoss { 0% { opacity: 0; } 12%, 28% { opacity: .96; } 64%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .signal-loss { display: none; } }
+
+.sound-control { left: auto; right: 16px; min-width: 104px; }
+.crt-atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: -1; background: radial-gradient(ellipse at center, transparent 15%, #0009 100%); }
+.crt-atmosphere::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, #0000 0 2px, #0005 2px 3px); opacity: .5; }
+.crt-atmosphere canvas { width: 100%; height: 100%; opacity: .035; image-rendering: pixelated; }
+.crt-roll { position: absolute; inset: -25vh 0 auto; height: 18vh; background: linear-gradient(transparent, #8c8c7b16, #0007, transparent); animation: crtRoll 8s linear infinite; }
+.crt-atmosphere[data-burst] canvas { opacity: .21; }
+.crt-atmosphere[data-burst] .crt-roll { animation-duration: .9s; }
+.crt-atmosphere[data-burst="dropout"] { animation: crtDropout .9s linear both; }
+@keyframes crtRoll { from { translate: 0 -20vh; } to { translate: 0 145vh; } }
+@keyframes crtDropout { 0%,100% { background-color: transparent; } 18%,31% { background-color: #000d; } 65% { background-color: #0004; } }
+.presence-dialogue { position: fixed; right: 18px; bottom: 64px; width: min(350px, calc(100vw - 36px)); padding: 15px; border: 1px solid #36261e; background: #070706f5; color: #bcb6b6; pointer-events: auto; font: 13px/1.65 Georgia, serif; }
+.presence-dialogue[hidden] { display: none; }
+.presence-heading { color: #94523a; font: 10px/1.5 monospace; letter-spacing: 2px; margin-bottom: 10px; }
+.presence-transcript { max-height: min(31vh, 230px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #4a3020 #090908; }
+.presence-line { margin: 0 0 12px; overflow-wrap: anywhere; }
+.presence-line span { color: #76432e; font: 9px monospace; letter-spacing: 1px; }
+.presence-line.user { color: #766e60; }
+.presence-status { color: #625d50; font: 10px/1.4 monospace; margin: 8px 0; }
+.presence-reply { display: flex; gap: 7px; border-top: 1px solid #302319; padding-top: 10px; }
+.presence-reply input { min-width: 0; width: 100%; padding: 7px 5px; border: 0; background: #10100d; color: #b5ad96; font: 12px HauntTypewriter, monospace; }
+.presence-reply button { border: 1px solid #49291c; background: #140e0a; color: #ac7a56; padding: 6px 9px; cursor: pointer; font: 10px monospace; }
+.presence-reply :focus-visible { outline: 1px solid #8b492d; outline-offset: 2px; }
+.walking-shadow, .walking-shadow.passing-shadow { position: fixed; left: -200px; width: 180px; height: 420px; filter: blur(10px); opacity: .32; animation: vaguePass 5.4s linear both; pointer-events: none; }
+.walking-shadow canvas { width: 100%; height: 100%; }
+@keyframes vaguePass { 0% { translate: -10vw 0; opacity: 0; } 18%,75% { opacity: .42; } 100% { translate: 130vw 0; opacity: 0; } }
+@media(prefers-reduced-motion:reduce) { .crt-roll, .walking-shadow { display: none; } .crt-atmosphere canvas { opacity: 0; } .crt-atmosphere[data-burst="dropout"] { animation: none; } }
+
+.scene-note, .wall-message, .wall-writing, .title-omen { font-family: HauntHorror, serif; color: #b6a8a5; letter-spacing: 1.3px; text-shadow: 0 0 7px #320803, 0 3px 5px #000; }
+.wall-message { font-size: clamp(25px, 2.5vw, 34px); line-height: 1.15; }
+.presence-line.assistant { font: inherit; letter-spacing: normal; }
+.opening-omen { position: fixed; top: 12px; left: 50%; translate: -50% 0; width: max-content; max-width: calc(100vw - 40px); pointer-events: none; text-align: center; font: 400 clamp(28px, 4vw, 52px)/1.1 HauntHorror, serif; letter-spacing: 3px; color: #b8a6a2; text-shadow: 0 0 2px #b8a6a255, 0 0 15px #750b08, 0 5px 9px #000; animation: omenArrival 1.2s ease-out both; }
+.opening-omen[hidden] { display: none; }
+@keyframes omenArrival { 0% { opacity: 0; filter: blur(8px); } 18% { opacity: 1; filter: blur(0); } 24% { opacity: .2; } 29%,100% { opacity: 1; } }
+
+.watcher::before { content: ""; position: absolute; inset: -30% -15%; background: radial-gradient(ellipse, #010101b8 5%, #01010180 35%, transparent 70%); filter: blur(12px); z-index: -1; }
+.eye-canvas { translate: none; mask-image: radial-gradient(ellipse 23% 22% at 25.5% 53%, #000 24%, #000b 58%, transparent 100%), radial-gradient(ellipse 23% 22% at 76.5% 53%, #000 24%, #000b 58%, transparent 100%); }
+
+.opening-omen, .wall-message, .wall-writing, .scene-note, .title-omen { text-transform: uppercase; font-weight: 400; letter-spacing: 2px; color: #b0a3a1; text-shadow: 0 -7px 5px #a79a9826, 0 6px 5px #a79a982b, 0 0 12px #210302, 0 3px 5px #000; mask-image: repeating-linear-gradient(176deg, #000 0 13px, #0007 13.2px 13.7px, #000 14px 27px); }
+.opening-omen { scale: .85 1.22; transform-origin: top center; letter-spacing: 4px; }
+.wall-message { scale: .92 1.12; transform-origin: left center; line-height: 1.35; }
+
+.signal-loss { background: transparent; animation: none; overflow: hidden; }
+.signal-loss span { position: absolute; left: 0; width: 100%; height: 4.3%; background: linear-gradient(90deg, #000, #030202 65%, #23110c); opacity: 0; animation: corruptionBand 3.5s steps(18) var(--delay) both; }
+@keyframes corruptionBand { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 20% { opacity: .48; clip-path: inset(0 var(--edge) 0 0); } 48%,72% { opacity: 1; clip-path: inset(0); } 100% { opacity: 0; clip-path: inset(0); } }
+.opening-omen, .wall-message, .wall-writing, .scene-note, .title-omen { color: #8f6d68; opacity: .72; text-shadow: -1px 2px 3px #631b1859, 1px -1px 4px #8b373033, 0 4px 7px #000; }
+@keyframes omenArrival { 0% { opacity: 0; filter: blur(7px); } 30% { opacity: .8; filter: blur(.3px); } 100% { opacity: .72; } }
+.walking-shadow, .walking-shadow.passing-shadow { width: 220px; height: 490px; filter: blur(5px); }
+@keyframes vaguePass { 0% { translate: -10vw 0; opacity: 0; } 18%,75% { opacity: .64; } 100% { translate: 130vw 0; opacity: 0; } }
+.watcher { mix-blend-mode: screen; filter: brightness(.65) saturate(.5) blur(.6px); }
+@media(prefers-reduced-motion:reduce) { .signal-loss, .signal-loss span { display: none; } }
+
+.crt-atmosphere[data-burst="dropout"] { animation: crtCorruption 3.4s ease-in-out both; }
+@keyframes crtCorruption { 0%,100% { background-color: transparent; } 30% { background-color: #0005; } 55%,72% { background-color: #000e; } }
+
+.scratched-lettering { font-family: HauntHorror, cursive; font-weight: 400; mask-image: none; letter-spacing: 2px; color: #a17a73; text-shadow: 0 -3px 3px #aa81752e, 1px 2px 2px #4a0e0e99, 0 5px 7px #000; }
+.omen-word { display: inline-block; white-space: nowrap; }
+.omen-glyph { position: relative; display: inline-block; transform: skewX(var(--lean)) scaleY(var(--height)); transform-origin: 50% 70%; }
+.omen-glyph.long-cut::after { content: ""; position: absolute; left: var(--scar); top: -.28em; width: 1.2px; height: 1.48em; background: linear-gradient(transparent, currentColor 25%, currentColor 68%, transparent); clip-path: polygon(50% 0, 100% 44%, 64% 100%, 0 57%); opacity: .55; pointer-events: none; }
+.opening-omen.scratched-lettering { font: 400 clamp(40px, 5.2vw, 68px)/1.4 HauntHorror, cursive; letter-spacing: 3px; scale: 1; z-index: 18; }
+.wall-message.scratched-lettering { font-size: clamp(34px, 3.4vw, 49px); line-height: 1.3; }
+.wall-writing.scratched-lettering { font-family: HauntHorror, cursive; font-size: clamp(38px, 4vw, 58px); }
+.message-infestation { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 9; animation: infestationExit 7.2s linear both; }
+.infestation-line { position: absolute; width: max-content; max-width: 78vw; font: 400 54px/1.1 HauntHorror, cursive; color: #ae8179; text-transform: uppercase; transform-origin: left center; animation: inscriptionArrive .3s ease-out both; }
+@keyframes inscriptionArrive { from { filter: blur(1.5px); } to { filter: blur(.15px); } }
+@keyframes infestationExit { 0%,78% { opacity: 1; } 100% { opacity: 0; } }
+.permanent-scars { position: fixed; inset: 0; pointer-events: none; z-index: 12; }
+.permanent-scars .glass-crack { animation: permanentStrike .15s ease-out both; }
+@keyframes permanentStrike { from { opacity: 0; } to { opacity: .8; } }
+.presence-dialogue { z-index: 20; }
+.curse-badge, .sound-control { z-index: 30; }
+.walking-shadow, .walking-shadow.passing-shadow { width: 160px; height: 390px; filter: blur(7px); animation: fleetingPass 1.25s linear both; }
+@keyframes fleetingPass { 0% { translate: -12vw 0; opacity: 0; } 16%,78% { opacity: .23; } 100% { translate: 135vw 0; opacity: 0; } }
+.crawling-stain { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at -5% 35%, #210302d9, transparent 46%), radial-gradient(ellipse at 110% 80%, #270403bd, transparent 48%); animation: stainSpread 5s ease-out both; }
+@keyframes stainSpread { from { opacity: 0; scale: 1.3; } to { opacity: .85; scale: 1; } }
+@media(prefers-reduced-motion:reduce) { .infestation-line, .message-infestation, .crawling-stain { animation: none; } }
+
+.omen-glyph { transform: none; }
+.omen-glyph.long-cut::after { display: none; }
+.opening-omen.scratched-lettering { font-size: clamp(64px, 7.5vw, 100px); line-height: 1.05; letter-spacing: 1.5px; }
+.wall-message.scratched-lettering { font-size: clamp(48px, 4.8vw, 72px); line-height: 1.1; }
+.wall-writing.scratched-lettering { font-size: clamp(48px, 5vw, 72px); }
+.murmur { font-family: HauntHorror, cursive; font-size: 52px; color: #a17a73; rotate: -3deg; max-width: min(360px, calc(100vw - 24px)); }
+
+.murmur { font: 400 18px/1.5 HauntTypewriter, monospace; color: #a8928e; text-transform: none; rotate: 0deg; letter-spacing: .2px; max-width: 280px; text-shadow: 0 2px 5px #000; }
+
+.autonomous-infection { position:absolute; inset:0; display:flex; flex-direction:column; pointer-events:none; overflow:hidden; }
+.autonomous-infection i { display:block; flex:1; background:#000; opacity:0; transform-origin:left; }
+.autonomous-infection.infecting i { animation: infectionSpread 5.2s steps(14) var(--infection-delay) both; }
+@keyframes infectionSpread { 0% { opacity:0; transform:scaleX(.01); } 13% { opacity:.3; transform:scaleX(.15); } 32% { opacity:.65; transform:scaleX(.5); } 52%,66% { opacity:.98; transform:scaleX(1); } 78% { opacity:.8; transform:scaleX(.97); } 100% { opacity:0; transform:scaleX(1); } }
+@media(prefers-reduced-motion:reduce) { .autonomous-infection { display:none; } }

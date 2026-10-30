@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haunted Web</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <p class="eyebrow">A GHOST IN THE MACHINE</p>
+  <h1>Haunted Web</h1>
+  <p class="intro">It watches. It rewrites. It refuses to let go.</p>
+  <div class="rule"></div>
+  <p id="status" role="status">Listening for the spirit…</p>
+  <p id="voice-status" class="footnote"></p>
+  <p id="engine" class="footnote"></p>
+  <button id="toggle" disabled>Contacting the page…</button>
+  <div class="sound-settings">
+    <button id="sound-toggle" disabled>Loading sound…</button>
+    <p id="sound-status" class="footnote" role="status"></p>
+    <label for="volume">Volume <output id="volume-value">40%</output></label>
+    <input id="volume" type="range" min="0" max="100" value="40" disabled>
+    <p class="footnote">Piano underneath · Analog pressure during events</p>
+  </div>
+  <p class="footnote">Haunted Web · Version 6.6.0</p>
+  <p class="escape">Press <kbd>Esc</kbd> to pause and restore the page.</p>
+  <p class="intro">Words unravel. Your typing speaks back. Links resist. Eyes follow your cursor.</p>
+  <details><summary>Wake the spirit</summary><p>Run <code>ollama pull gemma3:4b</code>, then <code>ollama serve</code>. Reload this page after installing or updating the extension.</p></details>
+</body>
+</html>

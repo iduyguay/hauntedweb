@@ -1,0 +1,28 @@
+:root { color-scheme: dark; font-family: Georgia, serif; background: #0a0808; color: #b6aaa6; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 30px clamp(20px,5vw,80px); }
+a { color: #a28277; font: 12px monospace; text-decoration: none; }
+header { max-width: 900px; margin-bottom: 30px; }
+.eyebrow { font: 11px monospace; color: #8e5345; letter-spacing: 3px; margin-top: 35px; }
+h1 { font-weight: 400; font-size: clamp(30px,4vw,50px); margin: 12px 0; color: #d0b8af; }
+p { line-height: 1.65; }
+.controls { display: flex; flex-wrap: wrap; gap: 15px; align-items: end; padding: 18px 0; border-block: 1px solid #30211e; }
+label { display: flex; flex-direction: column; gap: 8px; font: 12px monospace; color: #a98c81; }
+select, button { border: 1px solid #56362c; border-radius: 0; background: #1b100e; color: #b6a29a; padding: 11px 15px; font: 12px monospace; cursor: pointer; }
+button:hover { background: #301710; color: #e2c0b1; }
+button:disabled { opacity: .35; cursor: wait; }
+button:focus-visible,select:focus-visible,input:focus-visible { outline: 2px solid #b2735e; outline-offset: 3px; }
+input { accent-color: #8c4939; min-width: 150px; }
+output { display: inline; }
+.scenes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 23px; margin-top: 28px; }
+article { border: 1px solid #30211e; padding: 12px 12px 20px; background: #0d0909; }
+.thumbnail { aspect-ratio: 16/10; background-color: #030303; background-repeat: no-repeat; background-position: center; background-size: cover; }
+.eyes-thumb { background-image: url('../../assets/watching-eyes.png'); background-size: 85%; filter: brightness(.55); }
+.face-thumb { background-image: url('../../assets/jumpscare-face.png'); }
+.entity-thumb { background-image: url('../../assets/jumpscare-entity.png'); }
+h2 { color: #b89386; font: 15px monospace; margin: 20px 0 12px; }
+article p { min-height: 52px; font-size: 14px; }
+.bottom { display: flex; gap: 22px; align-items: center; margin-top: 25px; }
+.random { padding: 16px; }
+#status { font: 12px/1.5 monospace; color: #997e73; }
+@media(max-width:700px) { .scenes { grid-template-columns: 1fr; } .bottom { flex-direction: column; align-items: start; } }

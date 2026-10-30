@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-haunted-preview>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Haunted Web — Jumpscare Audition</title>
+  <link rel="stylesheet" href="jumpscare.css">
+  <link rel="stylesheet" href="../../src/jumpscare.css">
+  <script type="module" src="jumpscare.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../">← Back to the haunted page</a>
+    <p class="eyebrow">HAUNTED WEB / JUMPSCARE AUDITION</p>
+    <h1>Choose what comes through.</h1>
+    <p>Preview only. Each button starts one scene. The live haunted page plays music, creates glass cracks and triggers random scenes with selected B.</p>
+    <p><a href="sounds/">Compare three new sound candidates</a></p>
+  </header>
+  <main>
+    <section class="controls" aria-label="Sound controls">
+      <label>Scene sound
+        <select id="sound"><option value="sting">Selected B / String shock</option></select>
+      </label>
+      <label>Volume <output id="volume-value">35%</output><input id="volume" type="range" min="0" max="65" value="35"></label>
+      <button data-sound="sting">Listen: selected B</button>
+      <button id="stop">Stop / Escape</button>
+    </section>
+    <section class="scenes" aria-label="Scene previews">
+      <article><div class="thumbnail face-thumb"></div><h2>02 / Distorted face</h2><p>A close face breaks through the picture for a moment.</p><button data-jump="face" disabled>Preview face</button></article>
+      <article><div class="thumbnail entity-thumb"></div><h2>03 / Approaching presence</h2><p>A distant shape accelerates toward the screen.</p><button data-jump="entity" disabled>Preview approach</button></article>
+    </section>
+    <div class="bottom"><button data-jump="random" class="random" disabled>Preview a random scene</button><p id="status" role="status">Loading the audition…</p></div>
+  </main>
+  <div id="stage" class="jump-stage" hidden aria-hidden="true"><img id="visual" class="jump-image" alt=""><div class="tear"></div><div class="grain"></div></div>
+</body>
+</html>

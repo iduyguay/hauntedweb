@@ -1,0 +1,17 @@
+{
+  "name": "haunted-web",
+  "version": "6.6.0",
+  "private": true,
+  "description": "A horror experience that possesses ordinary web pages.",
+  "scripts": {
+    "test": "node --test tests/background.test.cjs",
+    "test:browser": "node --test tests/content.browser.test.cjs",
+    "check": "node scripts/build.cjs --check && node --check content.js && node --check background.js && node --check popup.js",
+    "build": "node scripts/build.cjs",
+    "test:extension": "node --test tests/extension.browser.test.cjs",
+    "test:jumpscare": "node --test tests/jumpscare.browser.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
