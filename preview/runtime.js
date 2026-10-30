@@ -3,7 +3,16 @@
   globalThis.__HAUNTED_LIVE_PREVIEW__ = true;
   const handlers = [];
   const originalFetch = fetch.bind(globalThis);
-  globalThis.fetch = (input, options) => String(input) === "http://localhost:11434/api/chat" ? originalFetch("/__haunt/generate", options) : originalFetch(input, options);
+  const hosted = Boolean(globalThis.__HAUNTED_HOSTED__);
+  globalThis.fetch = async (input, options) => {
+    if (String(input) !== "http://localhost:11434/api/chat") return originalFetch(input, options);
+    const response = await originalFetch(hosted ? "/api/generate" : "/__haunt/generate", options);
+    if (hosted && !response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || "SIGNAL is temporarily unavailable.");
+    }
+    return response;
+  };
   let voice;
   let voiceContext;
   for (const event of ["pointerdown", "keydown"]) addEventListener(event, event => { if (event.isTrusted) voiceContext?.resume().catch(() => {}); }, { capture: true });
@@ -15,7 +24,7 @@
     },
     tabs: { sendMessage: async (tab, message) => handlers.at(-1)?.(message, { id: "preview" }, () => {}) },
     tts: {
-      getVoices: callback => callback([{ voiceName: "Whisper", lang: "en-US", remote: false }]),
+      getVoices: callback => callback(hosted ? [] : [{ voiceName: "Whisper", lang: "en-US", remote: false }]),
       stop: () => {
         if (!voice) return;
         voice.controller.abort();

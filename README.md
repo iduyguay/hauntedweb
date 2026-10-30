@@ -126,3 +126,11 @@ The live haunted page is `/preview/`. The old sound comparison URL now opens the
 The approved A piano score loops continuously, remaining at a lower level during selected B's jumpscare cue. Automatic glass starts after 5–8 seconds, then adds fixed impacts at 11–21 second intervals; after twelve impacts, existing fractures gain more branches. The short glass crack sound remains enabled. The first random jumpscare arrives after 12–20 seconds, with 25–45 second gaps afterwards. Ambient text pulses run every 1.8 seconds; the passing presence repeats every 10 seconds. Hiding, Escape and pause cancel scheduled effects.
 
 Eyes are ambient only and independently appear in available blank space every 6.5–10.5 seconds. They never trigger the jumpscare cue. Progressive darkening starts on load; staggered corruption bands recur every twelve seconds with interference audio. Audio attempts autoplay and resumes on the first ordinary page interaction if the browser blocks it. No extra permission dialog is shown.
+
+## Hosted version on Vercel
+
+The hosted site uses `/api/generate` to reach Vercel AI Gateway. Set `AI_GATEWAY_MODEL` to a free model from the live catalog and enable Vercel OIDC for the project. Credentials remain on the server. The endpoint checks catalog prices and refuses models with nonzero input or output prices; no paid fallback is configured. Model availability and account verification requirements can still prevent replies.
+
+Hosted conversation and scene prompts are sent to the cloud provider, which may retain them; avoid personal information. The extension and Python preview continue to use local Ollama. Hosted speech uses available local English browser voices, preferring Whisper when installed, and does not use the macOS preview voice endpoint. Voice availability and tone depend on the device.
+
+Run `node scripts/build-site.cjs` to create the static site in `dist/`. Vercel also deploys the root `api/generate.js` function. Run `node --test tests/hosted.test.cjs` for the hosted integration checks.
