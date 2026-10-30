@@ -42,11 +42,12 @@ test('hosted endpoint adapts cloud replies and keeps credentials on the server',
     assert.equal(sent.body.max_tokens, 220);
     assert.equal(sent.options.headers.Authorization, 'Bearer test-token');
     assert.ok(!JSON.stringify(res.body).includes('test-token'));
-    global.fetch = async () => ({ ok: false, status: 402 });
+    global.fetch = async () => ({ ok: false, status: 402, json: async () => ({ error: { code: 'insufficient_funds' } }) });
     const unavailable = response();
     await handler(request({ messages: [{ role: 'user', content: 'Hello' }] }), unavailable);
     assert.equal(unavailable.code, 503);
     assert.match(unavailable.body.error, /credit/);
+    assert.equal(unavailable.body.reason, 'insufficient_funds');
   } finally {
     global.fetch = original.fetch;
     for (const [key, value] of Object.entries({ AI_GATEWAY_MODEL: original.model, VERCEL_OIDC_TOKEN: original.token, AI_GATEWAY_API_KEY: original.key })) {

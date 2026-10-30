@@ -56,11 +56,14 @@ module.exports = async function generate(req, res) {
       body: JSON.stringify({ model, messages, max_tokens: 220, temperature: 0.7, stream: false, reasoning: { effort: 'none' } })
     });
     if (!response.ok) {
+      const upstream = await response.json().catch(() => ({}));
+      const code = upstream.error?.code || upstream.error?.type;
+      const reason = ['customer_verification_required', 'insufficient_funds', 'quota_for_entity_exceeded'].includes(code) ? code : `gateway_${response.status}`;
       const error = response.status === 402 || response.status === 403
         ? 'SIGNAL needs its cloud credit or account verification completed.'
         : response.status === 429 ? 'SIGNAL is busy. Please try again shortly.'
         : 'SIGNAL cloud connection is unavailable. Please try again shortly.';
-      return res.status(response.status === 429 ? 429 : 503).json({ error });
+      return res.status(response.status === 429 ? 429 : 503).json({ error, reason });
     }
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content;
