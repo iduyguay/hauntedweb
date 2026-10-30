@@ -13,5 +13,11 @@
   },
   "devDependencies": {
     "playwright": "1.62.1"
+  },
+  "dependencies": {
+    "@vercel/oidc": "4.0.5"
+  },
+  "overrides": {
+    "zod": "4.6.6"
   }
 }

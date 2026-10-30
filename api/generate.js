@@ -36,7 +36,10 @@ module.exports = async function generate(req, res) {
       body.messages.some(item => !item || !['system', 'user', 'assistant'].includes(item.role) || typeof item.content !== 'string')) {
     return res.status(400).json({ error: 'Invalid conversation.' });
   }
-  const token = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
+  let token = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
+  if (!token) {
+    try { token = await require('@vercel/oidc').getVercelOidcToken(); } catch {}
+  }
   const model = process.env.AI_GATEWAY_MODEL;
   if (!token || !model) return res.status(503).json({ error: 'SIGNAL cloud connection is not configured yet.' });
   const messages = body.messages.map(item => ({ role: item.role, content: item.content }));
